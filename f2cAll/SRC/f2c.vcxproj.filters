@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{80823c15-76ee-4f90-b1a1-a7b193ba2014}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8b963a9f-0a36-48f7-b4fc-aa3817b8f661}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{be9deb62-763a-46cf-8fc8-c093b3c045e9}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="grammar">
+      <UniqueIdentifier>{1283b484-aed7-426d-9d42-178f3d965ac4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CDS.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DATA.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EQUIV.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ERROR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EXEC.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EXPR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FORMAT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FORMATDA.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INIT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INTR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IO.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LEX.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MEM.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MISC.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NAMES.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NICEPRIN.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OUTPUT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="P1OUTPUT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PARSE_AR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PREAD.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PROC.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PUT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PUTPCC.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSDEP.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VAX.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VERSION.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gram_new.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ftypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="machdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="names.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="niceprintf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="output.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p1defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pccdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sysdep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tokdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="usignal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="func_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gram.dcl">
+      <Filter>grammar</Filter>
+    </None>
+    <None Include="gram.exec">
+      <Filter>grammar</Filter>
+    </None>
+    <None Include="gram.expr">
+      <Filter>grammar</Filter>
+    </None>
+    <None Include="gram.head">
+      <Filter>grammar</Filter>
+    </None>
+    <None Include="gram.io">
+      <Filter>grammar</Filter>
+    </None>
+    <None Include="gram.in">
+      <Filter>grammar</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="gram_new_make">
+      <Filter>grammar</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,420 @@
+/****************************************************************
+Copyright 1990, 1993 by AT&T Bell Laboratories, Bellcore.
+
+Permission to use, copy, modify, and distribute this software
+and its documentation for any purpose and without fee is hereby
+granted, provided that the above copyright notice appear in all
+copies and that both that the copyright notice and this
+permission notice and warranty disclaimer appear in supporting
+documentation, and that the names of AT&T Bell Laboratories or
+Bellcore or any of their entities not be used in advertising or
+publicity pertaining to distribution of the software without
+specific, written prior permission.
+
+AT&T and Bellcore disclaim all warranties with regard to this
+software, including all implied warranties of merchantability
+and fitness.  In no event shall AT&T or Bellcore be liable for
+any special, indirect or consequential damages or any damages
+whatsoever resulting from loss of use, data or profits, whether
+in an action of contract, negligence or other tortious action,
+arising out of or in connection with the use or performance of
+this software.
+****************************************************************/
+
+%{
+#include <string>
+#include "defs.h"
+#include "func_def.h"
+#include "p1defs.h"
+
+static int nstars;			/* Number of labels in an
+					   alternate return CALL */
+static int datagripe;
+int ndim;
+int ndim_type;  // dimension for all variables of the type
+static int vartype;
+extern std::string var_derived_type_name;
+extern std::string var_derived_type_extends_name;
+int new_dcl;
+static ftnint varleng;
+struct Dims dims[MAXDIM+1];
+struct Dims dims_type[MAXDIM+1];
+bool in_dims_type = false;
+extern struct Labelblock **labarray;	/* Labels in an alternate
+						   return CALL */
+extern int maxlablist;
+extern bool in_member_access = false;
+/* The next two variables are used to verify that each statement might be reached
+   during runtime.   lastwasbranch   is tested only in the defintion of the
+   stat:   nonterminal. */
+
+int lastwasbranch = NO;
+static int thiswasbranch = NO;
+extern ftnint yystno;
+extern flag intonly;
+static chainp datastack;
+extern long laststfcn, thisstno;
+extern int can_include;	/* for netlib */
+
+//ftnint convci();
+//Addrp nextdata();
+//expptr mklogcon(), mkaddcon(), mkrealcon(), mkstrcon(), mkbitcon();
+//expptr mkcxcon();
+//struct Listblock *mklist();
+//struct Listblock *mklist();
+//struct Impldoblock *mkiodo();
+//Extsym *comblock();
+#define ESNULL (Extsym *)0
+#define NPNULL (Namep)0
+#define LBNULL (struct Listblock *)0
+//extern void freetemps(), make_param();
+
+
+ static void
+pop_datastack() {
+	chainp d0 = datastack;
+	if (d0->datap)
+		curdtp = (chainp)d0->datap;
+	datastack = d0->nextp;
+	d0->nextp = 0;
+	frchain(&d0);
+	}
+
+%}
+
+/*  %glr-parser */
+
+/* Specify precedences and associativities. */
+
+%union	{
+	int ival;
+    ii_val_t ii_val;
+	ftnint lval;
+	char *charpval;
+	chainp chval;
+	tagptr tagval;
+	expptr expval;
+	struct Labelblock *labval;
+	struct Nameblock *namval;
+	struct Eqvchain *eqvval;
+	Extsym *extval;
+	}
+
+%left SCOMMA
+%nonassoc SCOLON
+%right SEQUALS
+%left SEQV SNEQV
+%left SOR
+%left SAND
+%left SNOT
+%nonassoc SLT SGT SLE SGE SEQ SNE
+%left SCONCAT
+%left SPLUS SMINUS
+%left SSTAR SSLASH
+%right SPOWER
+//%left SMEMBER  SOPCALL
+%left SOPCALL SLPAR SMEMBER SDOT
+
+%start program
+%type <labval> thislabel label assignlabel
+%type <tagval> other inelt
+%type <ival> type typespec typename letter addop relop stop nameeq attribute attributes inout
+%type <ii_val> dcl
+%type <ival> routine_prefix routine_prefixes routine_prefixes_opt
+%type <lval> lengspec type_lengspec type_lengspec_name type_lengspec_helper type_lengspec_name_kwd
+%type <charpval> filename
+%type <chval> datavar datavarlist namelistlist funarglist funargs paraminits paraminit
+%type <chval> dospec dospecw doconcspec wherespecs doconcloop doconcloops
+%type <chval> callarglist arglist args exprlist inlist outlist out2 substring in_substring
+%type <chval> routine_postfixes routine_postfixes_opt
+%type <namval> routine_postfix
+%type <namval> name arg call var
+%type <expval> lengspec_or_dims lhs lhs_base expr uexpr opt_expr fexpr unpar_fexpr funarg
+%type <expval> expr_member_access
+%type <expval> ubound simple value callarg simple_const bit_const
+/*  %type <expval> complex_const */
+%type <expval> caseval
+%type <extval> common comblock entryname progname
+%type <eqvval> equivlist
+%type <chval> caselist casedecl
+%type <chval> casespec
+%type <expval> opt_init_list
+%type <expval> expr_do_list
+
+%%
+
+program:
+	| program stat SEOS
+	;
+
+stat:	  thislabel  entry
+		{
+/* stat:   is the nonterminal for Fortran statements */
+
+		  lastwasbranch = NO; }
+	| thislabel  spec
+	| thislabel  exec
+		{ /* forbid further statement function definitions... */
+		  if (parstate == INDATA && laststfcn != thisstno)
+			parstate = INEXEC;
+		  thisstno++;
+		  if($1 && ($1->labelno==dorange))
+			enddo($1->labelno, false, 1);
+		  if(lastwasbranch && thislabel==NULL)
+			warn("statement cannot be reached");
+		  lastwasbranch = thiswasbranch;
+		  thiswasbranch = NO;
+		  if($1)
+			{
+			if($1->labtype == LABFORMAT)
+				err("label already that of a format");
+			else
+				$1->labtype = LABEXEC;
+			}
+		  freetemps();
+		}
+	| thislabel SINCLUDE filename
+		{ if (can_include)
+			doinclude( $3, true );
+		  else {
+			fprintf(diagfile, "Cannot open file %s\n", $3);
+			done(1);
+			}
+		}
+	| thislabel  SEND /* end_spec */
+		{ if ($1)
+			lastwasbranch = NO;
+		  endproc(); /* lastwasbranch = NO; -- set in endproc() */
+		}
+	| thislabel  SENDFUNCTION opt_name end_spec 
+		{ if ($1)
+			lastwasbranch = NO;
+		  endproc(); /* lastwasbranch = NO; -- set in endproc() */
+		}
+	| thislabel  SENDSUBROUTINE opt_name end_spec 
+		{ if ($1)
+			lastwasbranch = NO;
+		  endproc(); /* lastwasbranch = NO; -- set in endproc() */
+		}
+	| thislabel  SENDPROGRAM opt_name end_spec
+		{ if ($1)
+			lastwasbranch = NO;
+		  endproc(); /* lastwasbranch = NO; -- set in endproc() */
+		}
+	| thislabel   SENDMODULE opt_name /* end_spec */
+		{  
+        exendmodule();
+       // if ($1)
+		//	lastwasbranch = NO;
+       //     endproc(); /* lastwasbranch = NO; -- set in endproc() */
+		}
+	| thislabel  SENDTYPE opt_name /* end_spec */
+		{ 
+         if ($1)
+			lastwasbranch = NO;
+            endtype(); /* lastwasbranch = NO; -- set in endproc() */
+
+        //enddcl(); endproc(); 
+		}
+	| thislabel  SENDINTERFACE
+      { in_interface_definition = false;}
+	| thislabel SUNKNOWN
+		{ extern void unclassifiable();
+		  unclassifiable();
+
+/* flline flushes the current line, ignoring the rest of the text there */
+
+		  flline(); };
+	| error
+		{ flline();  needkwd = NO;  inioctl = NO;
+		  yyerrok; yyclearin; }
+	;
+
+thislabel:  SLABEL
+		{
+		if(yystno != 0)
+			{
+			$$ = thislabel =  mklabel(yystno);
+			if( ! headerdone ) {
+				if (procclass == CLUNKNOWN)
+					procclass = CLMAIN;
+				puthead(CNULL, procclass);
+				}
+			if(thislabel->labdefined)
+				execerr("label %s already defined",
+					convic(thislabel->stateno) );
+			else	{
+				if(thislabel->blklevel!=0 && thislabel->blklevel<(unsigned int)blklevel
+				    && thislabel->labtype!=LABFORMAT)
+					warn1("there is a branch to label %s from outside block",
+					      convic( (ftnint) (thislabel->stateno) ) );
+				thislabel->blklevel = blklevel;
+				thislabel->labdefined = YES;
+				if(thislabel->labtype != LABFORMAT)
+					p1_label((long)(thislabel - labeltab));
+				}
+			}
+		else    $$ = thislabel = NULL;
+		}
+	;
+
+entry:	  SPROGRAM new_proc progname
+		   {startproc($3, CLMAIN); }
+	| SPROGRAM new_proc progname progarglist
+		   {	warn("ignoring arguments to main program");
+			/* hashclear(); */
+			startproc($3, CLMAIN); }
+	| SBLOCK new_proc progname
+		{ if($3) NO66("named BLOCKDATA");
+		  startproc($3, CLBLOCK); }
+	| routine_prefixes_opt SSUBROUTINE new_proc entryname arglist { needkwd = 1; /*&&*/} routine_postfixes_opt {needkwd = 0;}
+		{ entrypt(CLPROC, TYSUBR | $1, (ftnint) 0,  $4, $5, $7); }
+/*
+	| SFUNCTION new_proc entryname arglist
+		{ entrypt(CLPROC, TYUNKNOWN, (ftnint) 0, $3, $4); }
+*/
+	| routine_prefixes_opt SFUNCTION new_proc entryname arglist { needkwd = 1; /*&&*/} routine_postfixes_opt {needkwd = 0;}
+		{ entrypt(CLPROC, $1, varleng, $4, $5, $7); }
+	| SENTRY entryname arglist
+		 { if(parstate==OUTSIDE || procclass==CLMAIN
+			|| procclass==CLBLOCK)
+				execerr("misplaced entry statement", CNULL);
+		  entrypt(CLENTRY, 0, (ftnint) 0, $2, $3, 0);
+		}
+    | SMODULE new_module SNAME
+        { exmodule(token); }
+        
+    | SCONTAINS
+        {enddcl(); endproc(); excontains(); }
+        
+    |
+     SINTERFACE
+      { /*assert(false);*/ in_interface_definition = true;}
+	;
+
+
+//opt_bind : {needkwd=0;}/*empty*/
+//    |
+//    SBIND SLPAR SNAME SRPAR
+
+
+routine_postfix : 
+            { needkwd = 1; } SBIND { needkwd = 0; } SLPAR SNAME SRPAR {needkwd = 1; $$ = 0;}
+            | 
+            { needkwd = 1; } SRESULT { needkwd = 0; } SLPAR name SRPAR {needkwd = 1; $$ = $5;}
+
+routine_postfixes : { needkwd = 1; } routine_postfix
+		{ $$ = ($2 ? mkchain((char *)$2,CHNULL) : CHNULL ); }
+            | routine_postfixes { needkwd = 1; } routine_postfix
+		{ if($3) /*$1 =*/ $$ = mkchain((char *)$3, $1); }
+
+routine_postfixes_opt : /*empty*/
+            {$$ = 0;}
+            | routine_postfixes 
+            {$$ = $1;}
+
+
+
+routine_prefix : 
+            type {$$=$1;}
+            | 
+            { needkwd = 1; } SELEMENTAL 
+            {$$=TY_PREFIX_ELEMENTAL;}
+            |
+            { needkwd = 1; } SPURE
+             {$$=TY_PREFIX_PURE;}
+
+routine_prefixes : routine_prefix
+            {$$ = $1;}
+            | routine_prefixes routine_prefix
+            {$$ = $1 | $2;}
+
+routine_prefixes_opt : /*empty*/
+            {needkwd = 0; $$ = TYUNKNOWN;}
+            | routine_prefixes 
+            {$$ = $1;}
+
+new_proc:
+		{ newproc(); }
+	;
+
+new_module:
+		{ newmodule(); }
+	;
+
+entryname:  name
+		{ $$ = newentry($1, 1); }
+	;
+
+opt_name:  
+        |
+        SNAME
+	;
+
+name:	  SNAME
+		{ $$ = mkname(token); }
+	;
+
+progname:		{ $$ = NULL; }
+	| entryname
+	;
+
+progarglist:
+	  SLPAR SRPAR
+	| SLPAR progargs SRPAR
+	;
+
+progargs: progarg
+	| progargs SCOMMA progarg
+	;
+
+progarg:  SNAME
+	| SNAME SEQUALS SNAME
+	;
+
+arglist:
+		{ $$ = 0; }
+	| SLPAR SRPAR
+		{ NO66(" () argument list");
+		  $$ = 0; }
+	| SLPAR args SRPAR
+		{$$ = $2; }
+	;
+
+args:	  arg
+		{ $$ = ($1 ? mkchain((char *)$1,CHNULL) : CHNULL ); }
+	| args SCOMMA arg
+		{ if($3) /*$1 =*/ $$ = mkchain((char *)$3, $1); }
+	;
+
+arg:	  name
+		{ if(!in_interface_definition){
+              if($1->vstg!=STGUNKNOWN && $1->vstg!=STGARG)
+			      dclerr("name declared as argument after use", $1);
+		      $1->vstg = STGARG;
+          }
+		}
+	| SSTAR
+		{ NO66("altenate return argument");
+
+/* substars   means that '*'ed formal parameters should be replaced.
+   This is used to specify alternate return labels; in theory, only
+   parameter slots which have '*' should accept the statement labels.
+   This compiler chooses to ignore the '*'s in the formal declaration, and
+   always return the proper value anyway.
+
+   This variable is only referred to in   proc.c   */
+
+		  $$ = 0;  substars = YES; }
+	;
+
+
+
+filename:   SHOLLERITH
+		{
+		char *s;
+		s = copyn(toklen+1, token);
+		s[toklen] = '\0';
+		$$ = s;
+		}
+	;

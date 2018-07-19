@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\globals.cpp" />
+    <ClCompile Include="blitz\tinymat2io.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\tinyvec2.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\tinyvec2io.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\traversal.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\bench.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\benchext.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\globeval.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\memblock.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\range.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\tinymat2.cc">
+      <Filter>blitz</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\asexpr.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\complex.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\convolve.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\cycle.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\expr.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\interlace.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\io.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\methods.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\misc.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\ops.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\reduce.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\resize.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\slicing.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\stencil-classes.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\array\stencils.cc">
+      <Filter>blitz\array</Filter>
+    </ClCompile>
+    <ClCompile Include="random\mtparam.cc">
+      <Filter>random</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\extension\tinybasedmat2.cc">
+      <Filter>blitz\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="blitz\extension\tinybasedvec2.cc">
+      <Filter>blitz\extension</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="blitz">
+      <UniqueIdentifier>{8884ebb9-41c5-41f7-91a1-75927d2a3ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="blitz\array">
+      <UniqueIdentifier>{179fae44-1eee-4256-b0d5-9634dd6d77ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="blitz\ms">
+      <UniqueIdentifier>{8337eb8e-c378-4e35-a188-57498915458d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="blitz\extension">
+      <UniqueIdentifier>{62970110-0a9b-4622-a6ce-a63a388ebcb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random">
+      <UniqueIdentifier>{f742d6a0-bae2-4e8f-8e3f-f8dc37ca9fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="doc">
+      <UniqueIdentifier>{04470ac3-65e9-4086-8b2e-e92ea559bec7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="blitz\tinyvec2.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tm2fastiter.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tmevaluate.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\traversal.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tuning.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tv2fastiter.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tvcross.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tvecglobs.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tvevaluate.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\update.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\vector2.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\wrap-climits.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array-impl.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\bench.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\benchext.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\blitz.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\bounds.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\bzconfig.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\bzdebug.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\compiler.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\constpointerstack.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\etbase.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\et-forward.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\funcs.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\indexexpr.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\indexmap-forward.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\levicivita.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\limits-hack.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\listinit.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\memblock.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\minmax.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\numinquire.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\numtrait.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\ops.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\prettyprint.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\promote.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\range.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\ranks.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\reduce.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\shapecheck.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\simdtypes.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tau.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\timer.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\tinymat2.h">
+      <Filter>blitz</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\asexpr.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\cartesian.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\cgsolve.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\convolve.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\domain.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\et.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\expr.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\fastiter.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\funcs.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\functorExpr.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\geometry.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\indirect.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\iter.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\map.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\multi.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\newet.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\newet-macros.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\ops.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\reduce.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\shape.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\slice.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\stencil-et.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\stencil-et-macros.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\stencilops.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\stencils.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\storage.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\where.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\array\zip.h">
+      <Filter>blitz\array</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\ms\bzconfig.h">
+      <Filter>blitz\ms</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\tbv2fastiter.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\tbvevaluate.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\indexingvec2.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\tbm2fastiter.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\tbmevaluate.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="random\chisquare.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\default.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\discrete-uniform.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\exponential.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\F.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\gamma.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\mt.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\normal.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\uniform.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="random\beta.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\tinybasedmat2.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\tinybasedvec2.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="blitz\extension\member_projection.h">
+      <Filter>blitz\extension</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="blitz\config.h.in">
+      <Filter>blitz</Filter>
+    </None>
+    <None Include="blitz\Makefile.am">
+      <Filter>blitz</Filter>
+    </None>
+    <None Include="blitz\Makefile.in">
+      <Filter>blitz</Filter>
+    </None>
+    <None Include="blitz\README">
+      <Filter>blitz</Filter>
+    </None>
+    <None Include="blitz\array\Makefile.am">
+      <Filter>blitz\array</Filter>
+    </None>
+    <None Include="blitz\array\Makefile.in">
+      <Filter>blitz\array</Filter>
+    </None>
+    <None Include="random\Makefile.am">
+      <Filter>random</Filter>
+    </None>
+    <None Include="random\Makefile.in">
+      <Filter>random</Filter>
+    </None>
+    <None Include="doc\blitz.pdf">
+      <Filter>doc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="blitz.natvis" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>F2C</ProjectName>
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{4B121585-3F99-4C86-8858-6600E547C160}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\WinRel\</OutDir>
+    <IntDir>.\WinRel\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\WinDebug\</OutDir>
+    <IntDir>.\WinDebug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MinSpace</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;WIN32;_CONSOLE;ANSI_Libraries;ANSI_Prototypes;__NT_VC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\WinRel\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\WinRel\f2c.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\WinRel\</ObjectFileName>
+      <ProgramDataBaseFileName>.\WinRel\</ProgramDataBaseFileName>
+      <AdditionalOptions> " "</AdditionalOptions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>D:\loew\proj\boost\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\WinRel\f2c.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinRel\f2c.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinRel\f2c.exe</OutputFile>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>33170</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;WIN32;_CONSOLE;ANSI_Libraries;ANSI_Prototypes;__NT_VC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\WinDebug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\WinDebug\f2c.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\WinDebug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\WinDebug\</ProgramDataBaseFileName>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>D:\loew\proj\boost\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\WinDebug\f2c.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinDebug\f2c.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>.\WinDebug\f2c.exe</OutputFile>
+      <AdditionalDependencies>wsock32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>33170</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CDS.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DATA.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="EQUIV.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ERROR.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="EXEC.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="EXPR.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FORMAT.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FORMATDA.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="gram_new.c" />
+    <ClCompile Include="INIT.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="INTR.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="IO.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="LEX.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MAIN.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MEM.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MISC.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="NAMES.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="NICEPRIN.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="OUTPUT.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="P1OUTPUT.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PARSE_AR.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PREAD.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PROC.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PUT.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PUTPCC.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="sysdep.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="VAX.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="VERSION.C">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> " "  " "</AdditionalOptions>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DEFINES.H" />
+    <ClInclude Include="DEFS.H" />
+    <ClInclude Include="FORMAT.H" />
+    <ClInclude Include="FTYPES.H" />
+    <ClInclude Include="func_def.h" />
+    <ClInclude Include="IOB.H" />
+    <ClInclude Include="MACHDEFS.H" />
+    <ClInclude Include="NAMES.H" />
+    <ClInclude Include="NICEPRINtf.H" />
+    <ClInclude Include="OUTPUT.H" />
+    <ClInclude Include="P1DEFS.H" />
+    <ClInclude Include="PARSE.H" />
+    <ClInclude Include="PCCDEFS.H" />
+    <ClInclude Include="SYSDEP.H" />
+    <ClInclude Include="tokdefs.h" />
+    <ClInclude Include="USIGNAL.H" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="gram_new_make">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">erase gram_new.c
+set PATH="C:\GnuWin32\bin\";%PATH%
+..\sed\sed "s/#define/%%token/" .\tokdefs.h &gt; gram.in
+type gram.head gram.dcl gram.expr gram.exec gram.io  &gt;&gt;gram.in
+bison.exe -v gram.in
+rem copy gram.tab.in gram_new.c
+..\sed\sed "s/^#line.*/\/* &amp; *\//" gram.tab.in &gt;gram_new.c
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">gram.exec;gram.head;gram.dcl;gram.expr;gram.io;defs.h;tokdefs.h</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">gram.head gram.dcl gram.expr gram.exec gram.io defs.h tokdefs.h</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set PATH="C:\GnuWin32\bin\";%PATH%
+..\sed\sed "s/#define/%%token/" .\tokdefs.h &gt; gram.in
+type gram.head gram.dcl gram.expr gram.exec gram.io  &gt;&gt;gram.in
+bison.exe gram.in
+..\sed\sed "s/^#line.*/\/* &amp; *\//" gram.tab.in &gt;gram_new.c</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\gram_new.c</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">gram_new.c</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gram.dcl" />
+    <None Include="gram.exec" />
+    <None Include="gram.expr" />
+    <None Include="gram.head" />
+    <None Include="gram.in" />
+    <None Include="gram.io" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

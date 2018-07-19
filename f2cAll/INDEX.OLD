@@ -1,0 +1,274 @@
+ 
+  ====== index for f2c ============
+ 
+ FILES:
+ 
+f2c.h	Include file necessary for compiling output of the converter.
+ 	See the second NOTE below.
+ 
+f2c.1	Man page for f2c.
+ 
+f2c.1t	Source for f2c.1 (to be processed by troff -man or nroff -man).
+ 
+libf77	Library of non I/O support routines the generated C may need.
+ 	Fortran main programs result in a C function named MAIN__ that
+ 	is meant to be invoked by the main() in libf77.
+ 
+libi77	Library of Fortran I/O routines the generated C may need.
+ 	Note that some vendors (e.g., BSD, Sun and MIPS) provide a
+ 	libF77 and libI77 that are incompatible with f2c -- they
+ 	provide some differently named routines or routines with the
+ 	names that f2c expects, but with different calling sequences.
+ 	On such systems, the recommended procedure is to merge
+ 	libf77 and libi77 into a single library, say libf2c, and
+ 	install it where you can access it by specifying -lf2c .
+ 
+f2c.ps	Postscript for a technical report on f2c.  After you strip the
+ 	mail header, the first line should be "%!PS".
+ 
+fixes	The complete change log, reporting bug fixes and other changes.
+ 	(Some recent change-log entries are given below).
+ 
+fc	A shell script that uses f2c and imitates much of the behavior
+ 	of commonly found f77 commands.  You will almost certainly
+ 	need to adjust some of the shell-variable assignments to make
+ 	this script work on your system.
+ 
+ 
+  SUBDIRECTORY:
+ 
+src	Source for the converter itself, including a file of checksums
+ 	and source for a program to compute the checksums (to verify
+ 	correct transmission of the source), is available: ask netlib to
+ 		send all from f2c/src
+ 	If the checksums show damage to just a few source files, or if
+ 	the change log file (see "fixes" below) reports corrections to
+ 	some source files, you can request those files individually
+ 	"from f2c/src".  For example, to get defs.h and xsum0.out, you
+ 	would ask netlib to
+ 		send defs.h xsum0.out from f2c/src
+ 	"all from f2c/src" is 648203 bytes long.
+ 
+ 	Tip: if asked to send over 99,000 bytes in one request, netlib
+ 	breaks the shipment into 1000 line pieces and sends each piece
+ 	separately (since otherwise some mailers might gag).  To avoid
+ 	the hassle of reassembling the pieces, try to keep each request
+ 	under 99,000 bytes long.  The final number in each line of
+ 	xsum0.out gives the length of each file in f2c/src.  For
+ 	example,
+ 		send exec.c expr.c from f2c/src
+ 		send format.c format_data.c from f2c/src
+ 	will give you slightly less hassle than
+ 		send exec.c expr.c format.c format_data.c from f2c/src
+ 
+  NOTE:	For now, you may exercise f2c by sending netlib a message whose
+ 	first line is "execute f2c" and whose remaining lines are
+ 	the Fortran 77 source that you wish to have converted.
+ 	Return mail brings you the resulting C, with f2c's error
+ 	messages between #ifdef uNdEfInEd and #endif at the end.
+ 	(To understand line numbers in the error messages, regard
+ 	the "execute f2c" line as line 0.  It is stripped away by
+ 	the netlib software before f2c sees your Fortran input.)
+ 	Options described in the man page may be transmitted to
+ 	netlib by having the first line of input be a comment
+ 	whose first 6 characters are "c$f2c " and whose remaining
+ 	characters are the desired options, e.g., "c$f2c -R -u".
+ 	This scheme may change -- ask netlib to
+                send index from f2c
+         if you do not get the behavior you expect.
+ 
+ 	During the initial experimental period, incoming Fortran
+ 	will be saved in a file.  Don't send any secrets!
+ 
+ 
+  BUGS:	Please send bug reports (including the shortest example
+ 	you can find that illustrates the bug) to research!dmg
+ 	or dmg@research.att.com .  You might first check whether
+ 	the bug goes away when you turn optimization off.
+ 
+ 
+  NOTE:	f2c.h defines several types, e.g., real, integer, doublereal.
+ 	The definitions in f2c.h are suitable for most machines, but if
+ 	your machine has sizeof(double) > 2*sizeof(long), you may need
+ 	to adjust f2c.h appropriately.  f2c assumes
+ 		sizeof(doublecomplex) = 2*sizeof(doublereal)
+ 		sizeof(doublereal) = sizeof(complex)
+ 		sizeof(doublereal) = 2*sizeof(real)
+ 		sizeof(real) = sizeof(integer)
+ 		sizeof(real) = sizeof(logical)
+ 		sizeof(real) = 2*sizeof(shortint)
+ 	EQUIVALENCEs may not be translated correctly if these
+ 	assumptions are violated.
+ 
+ 	There exists a C compiler that objects to the lines
+ 		typedef VOID C_f;	/* complex function */
+ 		typedef VOID H_f;	/* character function */
+ 		typedef VOID Z_f;	/* double complex function */
+ 	in f2c.h .  If yours is such a compiler, do two things:
+ 	1. Complain to your vendor about this compiler bug.
+ 	2. Find the line
+ 		#define VOID void
+ 	   in f2c.h and change it to
+ 		#define VOID int
+ 	(For readability, the f2c.h lines shown above have had two
+ 	tabs inserted before their first character.)
+ 
+  FTP:	All the material described above is now available by anonymous
+ 	ftp from research.att.com -- look in dist/f2c .  You must
+ 	uncompress the .Z files once you have a copy of them, e.g., by
+ 		uncompress *.Z
+ 
+  -----------------
+  Recent change log (partial)
+  -----------------
+ 
+  Tue Jan 15 12:00:24 EST 1991:
+    Fix bug when two equivalence groups are merged, the second with
+  nonzero offset, and the result is then merged into a common block.
+  Example:
+       INTEGER W(3), X(3), Y(3), Z(3)
+       COMMON /ZOT/ Z
+       EQUIVALENCE (W(1),X(1)), (X(2),Y(1)), (Z(3),X(1))
+  ***** W WAS GIVEN THE WRONG OFFSET
+  Recognize Fortran 90's optional NML= in NAMELIST READs and WRITEs.
+  (Currently NML= and FMT= are treated as synonyms -- there's no
+  error message if, e.g., NML= specifies a format.)
+   libi77: minor adjustment to allow internal READs from character
+  string constants in read-only memory.
+ 
+  Wed Jan 23 00:38:48 EST 1991:
+   Allow hex, octal, and binary constants to have the qualifying letter
+  (z, x, o, or b) either before or after the quoted string containing the
+  digits.  For now this change will not be reflected in f2c.ps .
+ 
+ Tue Jan 29 16:23:45 EST 1991:
+   Arrange for character-valued statement functions to give results of
+ the right length (that of the statement function's name).
+ 
+ Wed Jan 30 07:05:32 EST 1991:
+   More tweaks for character-valued statement functions: an error
+ check and an adjustment so a right-hand side of nonconstant length
+ (e.g., a substring) is handled right.
+ 
+ Thu Jan 31 13:53:44 EST 1991:
+   Add a test after the cleanup call generated for I/O statements with
+ ERR= or END= clauses to catch the unlikely event that the cleanup
+ routine encounters an error.
+ 
+ Tue Feb  5 01:39:36 EST 1991:
+   Change Mktemp to mktmp (for the benefit of systems so brain-damaged
+ that they do not distinguish case in external names -- and that for
+ some reason want to load mktemp).  Try to get xsum0.out right this
+ time (it somehow didn't get updated on 4 Feb. 1991).
+   Add note to libi77/README about adjusting the interpretation of
+ RECL= specifiers in OPENs for direct unformatted I/O.
+ 
+ Thu Feb  7 17:24:42 EST 1991:
+   New option -r casts values of REAL functions, including intrinsics,
+ to REAL.  This only matters for unportable code like
+ 	real r
+ 	r = asin(1.)
+ 	if (r .eq. asin(1.)) ...
+ [The behavior of such code varies with the Fortran compiler used --
+ and sometimes is affected by compiler options.]  For now, the man page
+ at the end of f2c.ps is the only part of f2c.ps that reflects this new
+ option.
+ 
+ Fri Feb  8 18:12:51 EST 1991:
+   Cast pointer differences passed as arguments to the appropriate type.
+ This matters, e.g., with MSDOS compilers that yield a long pointer
+ difference but have int == short.
+   Disallow nonpositive dimensions.
+ 
+ Fri Feb 15 12:24:15 EST 1991:
+   Change %d to %ld in sprintf call in putpower in putpcc.c.
+   Free more memory (e.g. allowing translation of larger Fortran
+ files under MS-DOS).
+   Recognize READ (character expression)
+ as formatted I/O with the format given by the character expression.
+   Update year in Notice.
+ 
+ Mon Mar  4 15:19:42 EST 1991:
+   Fix bug in passing the real part of a complex argument to an intrinsic
+ function.  Omit unneeded parentheses in nested calls to intrinsics.
+ Example:
+ 	subroutine foo(x, y)
+ 	complex y
+ 	x = exp(sin(real(y))) + exp(imag(y))
+ 	end
+ 
+ Fri Mar  8 15:05:42 EST 1991:
+   Fix a comment in expr.c; omit safstrncpy.c (which had bugs in
+ cases not used by f2c).
+ 
+ Wed Mar 13 02:27:23 EST 1991:
+   Initialize firstmemblock->next in mem_init in mem.c .  [On most
+ systems it was fortuituously 0, but with System V, -lmalloc could
+ trip on this missed initialization.]
+ 
+ Wed Mar 13 11:47:42 EST 1991:
+   Fix a reference to freed memory.
+ 
+ Current timestamps of files in "all from f2c/src", sorted by time,
+ appear below (mm/dd/year hh:mm:ss).  To bring your source up to date,
+ obtain source files with a timestamp later than the time shown in your
+ version.c.  Note that the time shown in the current version.c is the
+ timestamp of the source module that immediately follows version.c below:
+ 
+xsum0.out
+version.c
+output.c
+mem.c
+niceprintf.c
+expr.c
+makefile
+io.c
+Notice
+p1output.c
+putpcc.c
+proc.c
+gram.dcl
+gram.exec
+format.c
+intr.c
+malloc.c
+f2c.1
+f2c.1t
+main.c
+defs.h
+exec.c
+lex.c
+README
+equiv.c
+misc.c
+xsum.c
+names.c
+data.c
+parse_args.c
+parse.h
+formatdata.c
+error.c
+sysdep.h
+sysdep.c
+init.c
+pread.c
+cds.c
+put.c
+gram.io
+gram.expr
+names.h
+p1defs.h
+defines.h
+gram.head
+vax.c
+tokens
+format.h
+output.h
+iob.h
+niceprintf.h
+memset.c
+f2c.h
+usignal.h
+machdefs.h
+pccdefs.h
+

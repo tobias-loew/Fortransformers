@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+    <Type Name="blitz::TinyBasedVector&lt;*,*,*&gt;">
+        <DisplayString>{{ bounds={$T3}:{$T3 - 1 + n_length} }}</DisplayString>
+        <Expand>
+            <CustomListItems>
+                <Variable Name="index" InitialValue="0" />
+                <Size>n_length</Size>
+                <Loop>
+                    <Item Name ="({$T3 + index})">data_[index]</Item>
+                    <Exec>++index</Exec>
+                </Loop>
+            </CustomListItems>
+        </Expand>
+    </Type>
+    <Type Name="blitz::TinyVector&lt;*,*&gt;">
+        <DisplayString>{{ bounds=0:{$T2 - 1} }}</DisplayString>
+        <Expand>
+            <CustomListItems>
+                <Variable Name="index" InitialValue="0" />
+                <Size>$T2</Size>
+                <Loop>
+                    <Item Name ="({index})">data_[index]</Item>
+                    <Exec>++index</Exec>
+                </Loop>
+            </CustomListItems>
+        </Expand>
+    </Type>
+    <Type Name="blitz::Array&lt;*,*,*&gt;">
+        <DisplayString>{{ extent={length_} }}</DisplayString>
+        <Expand>
+            <Item Name="extent">length_</Item>
+            <ArrayItems Condition="storage_.ordering_.data_[0]==0">
+                <!--Fortran-style-->
+                <Direction>Backward</Direction>
+                <Rank>$T2</Rank>
+                <Size>length_.data_[$i]</Size>
+                <ValuePointer>($T1*)data_</ValuePointer>
+            </ArrayItems>
+            <ArrayItems>
+                <Direction>Forward</Direction>
+                <Rank>$T2</Rank>
+                <Size>length_.data_[$i]</Size>
+                <ValuePointer>($T1*)data_</ValuePointer>
+            </ArrayItems>
+        </Expand>
+    </Type>
+
+
+    <Type Name="blitz::Array&lt;*,*,blitz::array_policy::StaticFortranArrayPolicy&lt;*&gt;&gt;">
+        <DisplayString>{{ bounds={$T3}:{$T3 - 1 + length_.data_[0]} }}</DisplayString>
+        <Expand>
+            <CustomListItems>
+                <Variable Name="index" InitialValue="0" />
+                <Size>length_.data_[0]</Size>
+                <Loop>
+                    <Item Name ="({$T3 + index})">data_[$T3 + index]</Item>
+                    <Exec>++index</Exec>
+                </Loop>
+            </CustomListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="blitz::Array&lt;*,1,*&gt;">
+        <DisplayString>{{ extent={length_.data_[0]} }}</DisplayString>
+        <Expand>
+            <CustomListItems>
+                <Variable Name="index" InitialValue="0" />
+                <Loop>
+                    <Break Condition="index == length_.data_[0]"/>
+                    <Item Name ="({index+ storage_.base_.data_[0]})">data_[index + storage_.base_.data_[0]]</Item>
+                    <Exec>++index</Exec>
+                </Loop>
+            </CustomListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="blitz::Array&lt;*,2,*&gt;">
+        <DisplayString>{{ extents: {storage_.base_.data_[0]}:{length_.data_[0]}, {storage_.base_.data_[1]}:{length_.data_[1]} }}</DisplayString>
+        <Expand>
+            <CustomListItems Condition="storage_.ordering_.data_[0]==0">
+                <!--Fortran-style-->
+                <Variable Name="index" InitialValue="0" />
+                <Variable Name="index2" InitialValue="0" />
+                <Loop>
+                    <Break Condition="index2 == length_.data_[1]"/>
+                    <Exec>index = 0</Exec>
+                    <Loop>
+                        <Break Condition="index == length_.data_[0]"/>
+                        <Item Name ="({index+ storage_.base_.data_[0]}, {index2+ storage_.base_.data_[1]})">data_[(index2 + storage_.base_.data_[1]) * length_.data_[0] + index + storage_.base_.data_[0]]</Item>
+                        <Exec>++index</Exec>
+                    </Loop>
+                    <Exec>++index2</Exec>
+                </Loop>
+            </CustomListItems>
+            <CustomListItems>
+                <Variable Name="index" InitialValue="0" />
+                <Variable Name="index2" InitialValue="0" />
+                <Loop>
+                    <Break Condition="index == length_.data_[0]"/>
+                    <Exec>index2 = 0</Exec>
+                    <Loop>
+                        <Break Condition="index2 == length_.data_[1]"/>
+                        <Item Name ="({index+ storage_.base_.data_[0]}, {index2+ storage_.base_.data_[1]})">data_[(index + storage_.base_.data_[0]) * length_.data_[1] + index2 + storage_.base_.data_[1]]</Item>
+                        <Exec>++index2</Exec>
+                    </Loop>
+                    <Exec>++index</Exec>
+                </Loop>
+            </CustomListItems>
+        </Expand>
+    </Type>
+
+</AutoVisualizer>

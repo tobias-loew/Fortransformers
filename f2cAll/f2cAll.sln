@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "F2C", "SRC\f2c.vcxproj", "{4B121585-3F99-4C86-8858-6600E547C160}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LIBF77", "LIBF77\Libf77.vcxproj", "{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LIBI77", "LIBI77\Libi77.vcxproj", "{62833265-EA61-4AF3-83EC-E7A2FF65DB30}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "TEST\test.vcxproj", "{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{4C32085C-85B6-4D94-A5A3-A9CF47B38C1A}"
+	ProjectSection(SolutionItems) = preProject
+		F2C.H = F2C.H
+		f2c_extensions.h = f2c_extensions.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Template|x86 = Template|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B121585-3F99-4C86-8858-6600E547C160}.Debug|x86.ActiveCfg = Debug|Win32
+		{4B121585-3F99-4C86-8858-6600E547C160}.Debug|x86.Build.0 = Debug|Win32
+		{4B121585-3F99-4C86-8858-6600E547C160}.Release|x86.ActiveCfg = Release|Win32
+		{4B121585-3F99-4C86-8858-6600E547C160}.Release|x86.Build.0 = Release|Win32
+		{4B121585-3F99-4C86-8858-6600E547C160}.Template|x86.ActiveCfg = Release|Win32
+		{4B121585-3F99-4C86-8858-6600E547C160}.Template|x86.Build.0 = Release|Win32
+		{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}.Debug|x86.ActiveCfg = Debug|Win32
+		{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}.Debug|x86.Build.0 = Debug|Win32
+		{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}.Release|x86.ActiveCfg = Release|Win32
+		{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}.Release|x86.Build.0 = Release|Win32
+		{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}.Template|x86.ActiveCfg = Template|Win32
+		{EB3B5BDD-5B57-4D7B-9526-71FA88F25221}.Template|x86.Build.0 = Template|Win32
+		{62833265-EA61-4AF3-83EC-E7A2FF65DB30}.Debug|x86.ActiveCfg = Debug|Win32
+		{62833265-EA61-4AF3-83EC-E7A2FF65DB30}.Debug|x86.Build.0 = Debug|Win32
+		{62833265-EA61-4AF3-83EC-E7A2FF65DB30}.Release|x86.ActiveCfg = Release|Win32
+		{62833265-EA61-4AF3-83EC-E7A2FF65DB30}.Release|x86.Build.0 = Release|Win32
+		{62833265-EA61-4AF3-83EC-E7A2FF65DB30}.Template|x86.ActiveCfg = Template|Win32
+		{62833265-EA61-4AF3-83EC-E7A2FF65DB30}.Template|x86.Build.0 = Template|Win32
+		{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}.Debug|x86.ActiveCfg = Debug|Win32
+		{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}.Debug|x86.Build.0 = Debug|Win32
+		{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}.Release|x86.ActiveCfg = Release|Win32
+		{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}.Release|x86.Build.0 = Release|Win32
+		{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}.Template|x86.ActiveCfg = Template|Win32
+		{3D7DE37B-01CA-4754-804B-B18B62A2F2D6}.Template|x86.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
