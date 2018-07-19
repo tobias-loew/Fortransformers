@@ -14,3 +14,5 @@ Usage:
   - select "test" project as startup-project
   - build solution
   - run "test" project
+
+watch the talk on C++Now 2018: https://www.youtube.com/watch?v=9jGPe1S17R0
