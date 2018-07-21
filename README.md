@@ -1,4 +1,4 @@
-# f2cpp
+# Fortransformers
 Fortran90 to C++
 
 This is a Fortran to C++ translation-tool.
