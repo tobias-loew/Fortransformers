@@ -3,10 +3,10 @@ Fortran90 to C++
 
 This is a Fortran to C++ translation-tool.
 
-Since this project used a modified versions of f2c (http://www.netlib.org/f2c/) and Blitz++ (https://github.com/blitzpp/blitz).
+This project uses modified versions of f2c (http://www.netlib.org/f2c/) and Blitz++ (https://github.com/blitzpp/blitz).
 When used, licenses from those projects also have to be obeyed.
 
-Usage is granted as specified in thefollowing "Boost Software License - Version 1.0", but usage and/or distribution and/or selling as a or within a commercial Fortran to C/C++ translation-tool is prohibited.
+Usage is granted as specified in the following "Boost Software License - Version 1.0", but usage and/or distribution and/or selling as a or as part of a commercial Fortran to C/C++ translation-tool and/or translation-service is prohibited.
 
 
 Boost Software License - Version 1.0 - August 17th, 2003
