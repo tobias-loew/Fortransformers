@@ -37,10 +37,14 @@ DEALINGS IN THE SOFTWARE.
 
 
 For compiling/running this project Visual Studio 2015 or later is required.
-Additionally a boost installation is needed (1.67 works)
+Additionally needed:
+  - a "Boost" installation (www.boost.org, version 1.67 works)
+  - "Bison for Windows" (http://gnuwin32.sourceforge.net/packages/bison.htm, version 2.4.1 works); the executable is expected to be installed in C:\GnuWin32\bin\ (otherwise adjust path in the "Custom Bould Tool" for F2C->grammar->gram_new_make)
+  
 Usage: 
   - open VS solution "f2cpp.sln"
   - adjust boost include directory in the "test" project
+  - adjust path for bison.exe in "Custom Bould Tool" for F2C->grammar->gram_new_make (see above)
   - select "test" project as startup-project
   - build solution
   - run "test" project
