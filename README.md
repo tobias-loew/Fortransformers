@@ -50,3 +50,5 @@ Usage:
   - run "test" project
 
 watch the talk on C++Now 2018: https://www.youtube.com/watch?v=9jGPe1S17R0
+
+If you or your company neess professional support transforming Fortran code to C++ you can contact me: tobi < at > die-loews < dot > de
